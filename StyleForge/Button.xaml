@@ -5,8 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StyleForge"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="60" d:DesignWidth="150">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="btnBGColor" x:Name="_btnBackgroundColor" Color="White" />
+        <SolidColorBrush x:Key="btnFontColor" x:Name="_btnFontColor" Color="Black" />
+    </UserControl.Resources>
     <Grid>
-            
+        <Border x:Name="btnBorder" Background="{StaticResource btnBGColor}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="48" Width="Auto" MaxWidth="48"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="btnImage" Visibility="Hidden" />
+                <Label x:Name="btnText" Foreground="{StaticResource btnFontColor}" Grid.ColumnSpan="3" Content="Button" VerticalContentAlignment="Center" Padding="0,0,0,0" HorizontalContentAlignment="Center" />
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
