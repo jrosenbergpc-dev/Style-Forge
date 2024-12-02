@@ -1,5 +1,76 @@
-﻿<h3>RibbonControl</h3>
-
+﻿<table class="icx_ribbon_control">
+    <tr>
+        <NavBar MenuItems="@NavMenuItems" TabSelectionChanged="@OnTabSelectionChanged" NavLinkClicked="@OnNavLinkClicked" />
+    </tr>
+    <tr>
+        <Viewport @ref="@RibbonViewport" />
+    </tr>
+</table>
 @code {
+    private Viewport? RibbonViewport;
 
+    [Parameter] public List<NavMenuItem>? NavMenuItems { get; set; }
+    [Parameter] public EventCallback<NavMenuItem> NavTabSelected { get; set; }
+    [Parameter] public EventCallback<NavLink> NavLinkClicked { get; set; }
+    [Parameter] public EventCallback<dynamic> RibbonItemClicked { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (NavMenuItems != null)
+            {
+                if (NavMenuItems.Count > 1)
+                {
+                    await UpdateViewport(NavMenuItems[1]); //load first tab section, might need to rework this....TODO
+                }
+            }
+        }
+    }
+
+    private async void OnTabSelectionChanged(NavMenuItem e)
+    {
+        if (e.IsSelected == true)
+        {
+            await UpdateViewport(e);
+
+            await NavTabSelected.InvokeAsync(e);
+        }
+    }
+
+    private async Task UpdateViewport(NavMenuItem e)
+    {
+        if (RibbonViewport == null)
+        {
+            return;
+        }
+
+        Dictionary<string, object> defaultPairs = new Dictionary<string, object>();
+        defaultPairs.Add("ItemClicked", new Func<dynamic, Task>(Viewport_ItemClicked));
+
+        Dictionary<string, object>? mergedDict = null;
+
+        if (e.CustomAttributes != null)
+        {
+            mergedDict = defaultPairs.Concat(e.CustomAttributes).GroupBy(kvp => kvp.Key).ToDictionary(group => group.Key, group => group.Last().Value);
+        }
+        else
+        {
+            mergedDict = defaultPairs;
+        }
+
+        await RibbonViewport.SetContent(this, e.Section, mergedDict);
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void OnNavLinkClicked(NavLink e)
+    {
+        await NavLinkClicked.InvokeAsync(e);
+    }
+
+    private async Task Viewport_ItemClicked(dynamic item)
+    {
+        await RibbonItemClicked.InvokeAsync(item);
+    }
 }
