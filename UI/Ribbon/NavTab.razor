@@ -1,0 +1,23 @@
+﻿@if (IsSelected == true)
+{
+    <div class="icx_navtab_selected" @onclick="@TabClicked">
+        <span>@Text</span>
+    </div>
+}
+else
+{
+    <div class="icx_navtab" @onclick="@TabClicked">
+        <span>@Text</span>
+    </div>
+}
+
+@code {
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public EventCallback<NavTab> NavTabClicked { get; set; }
+
+    private void TabClicked(MouseEventArgs e)
+    {
+        NavTabClicked.InvokeAsync(this);
+    }
+}

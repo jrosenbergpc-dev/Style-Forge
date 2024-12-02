@@ -1,0 +1,54 @@
+﻿@if (MenuItems != null)
+{
+    <td>
+    @foreach (NavMenuItem item in MenuItems)
+    {
+        @if (item.Type == typeof(NavLink))
+        {
+            <NavLink Text="@item.Text" IconURL="@item.Icon" LinkStyle="@item.LinkStyle" Width="@item.Width" Height="@item.Height" IconWidth="@item.IconWidth" IconHeight="@item.IconHeight" Index="@item.Index" CustomAction="@item.CustomLinkAction" OnClicked="@LinkClicked" />
+        }
+        else if (item.Type == typeof(NavTab))
+        {
+            <NavTab Text="@item.Text" IsSelected="@item.IsSelected" NavTabClicked="@TabClicked" />
+        }
+    }
+        <div class="icx_ribbon_tabheader" style="float: left;" />
+    </td>
+}
+else
+{
+    <td>&nbsp;</td>
+}
+
+@code {
+    [Parameter] public List<NavMenuItem>? MenuItems { get; set; }
+    [Parameter] public EventCallback<NavMenuItem> TabSelectionChanged { get; set; }
+    [Parameter] public EventCallback<NavLink> NavLinkClicked { get; set; }
+
+    private async void TabClicked(NavTab e)
+    {
+        MenuItems.ForEach(item =>
+        {
+            if (item.IsSelected == true)
+            {
+                item.IsSelected = false;
+            }
+        });
+
+        NavMenuItem x = MenuItems.Where(item => item.Text == e.Text).FirstOrDefault();
+
+        if (x != null)
+        {
+            x.IsSelected = true;
+        }
+
+        await TabSelectionChanged.InvokeAsync(x);
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void LinkClicked(NavLink e)
+    {
+        await NavLinkClicked.InvokeAsync(e);
+    }
+}

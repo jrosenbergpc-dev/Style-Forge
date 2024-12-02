@@ -1,0 +1,44 @@
+﻿<div class="icx_navlink" style="vertical-align: middle; width: @Width; height: @Height;" @onclick="@NavLinkClicked">
+    @if (LinkStyle == NavLinkStyle.Text)
+    {
+        @Text
+    }
+    else if (LinkStyle == NavLinkStyle.Icon)
+    {
+        <div style="width: @IconWidth; height: @IconHeight; margin:auto; background: url(@IconURL) no-repeat center; background-size: 100% 100%;" />
+    }
+    else if (LinkStyle == NavLinkStyle.TextAndIcon)
+    {
+        <div style="float: left; width: @IconWidth; height: @IconHeight; margin:auto; background: url(@IconURL) no-repeat center; background-size: 100% 100%;" />
+        <div style="float: left; margin-left: 2px; text-align: left;">
+            @Text
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public int Index { get; set; }
+
+    [Parameter] public string? IconURL { get; set; }
+    [Parameter] public string? IconWidth { get; set; }
+    [Parameter] public string? IconHeight { get; set; }
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public string? Width { get; set; }
+    [Parameter] public string? Height { get; set; }
+
+    [Parameter] public Action? CustomAction { get; set; }
+
+    [Parameter] public NavLinkStyle LinkStyle { get; set; } = NavLinkStyle.Text;
+
+    [Parameter] public EventCallback<NavLink> OnClicked { get; set; }
+
+    private async void NavLinkClicked(MouseEventArgs e)
+    {
+        await OnClicked.InvokeAsync(this);
+
+        if (CustomAction != null)
+        {
+            CustomAction.Invoke();
+        }
+    }
+}
