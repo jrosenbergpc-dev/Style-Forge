@@ -1,0 +1,17 @@
+﻿.sf_navtab {
+    float: left;
+    display: inline-block;
+    margin-left: 0.3vw;
+    padding-left: 0.6vw;
+    padding-right: 0.6vw;
+    vertical-align: middle;
+    line-height: 4.6vh;
+    font-size: 2.2vh;
+    border-left: 1px solid #1B1B1B;
+    border-top: 1px solid #1B1B1B;
+    border-right: 1px solid #1B1B1B;
+    border-bottom: 0px;
+    border-radius: 5px 5px 0px 0px;
+    transition: all 0.3s linear;
+    cursor: default;
+}
