@@ -1,4 +1,5 @@
-﻿using Style_Forge_Blazor.Common.Enums.Style;
+﻿using Style_Forge_Blazor.BaseTemplates;
+using Style_Forge_Blazor.Common.Enums.Style;
 
 namespace Style_Forge_Blazor.UI.Models
 {
@@ -21,7 +22,7 @@ namespace Style_Forge_Blazor.UI.Models
         public NavLinkStyle LinkStyle { get; set; } = NavLinkStyle.Text;
         public string? Page { get; set; }
         public Type? Section { get; set; }
-        public Type? Type { get; set; }
+        public NavMenuItemBase? Type { get; set; }
         public Dictionary<string, object>? CustomAttributes { get; set; }
         public Action? CustomLinkAction { get; set; }
 

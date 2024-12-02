@@ -1,4 +1,5 @@
-﻿<div class="icx_navlink" style="vertical-align: middle; width: @Width; height: @Height;" @onclick="@NavLinkClicked">
+﻿@inherits NavMenuItemBase
+<div class="icx_navlink" style="vertical-align: middle; width: @Width; height: @Height;" @onclick="@NavLinkClicked">
     @if (LinkStyle == NavLinkStyle.Text)
     {
         @Text
@@ -22,15 +23,12 @@
     [Parameter] public string? IconURL { get; set; }
     [Parameter] public string? IconWidth { get; set; }
     [Parameter] public string? IconHeight { get; set; }
-    [Parameter] public string? Text { get; set; }
     [Parameter] public string? Width { get; set; }
     [Parameter] public string? Height { get; set; }
 
     [Parameter] public Action? CustomAction { get; set; }
 
     [Parameter] public NavLinkStyle LinkStyle { get; set; } = NavLinkStyle.Text;
-
-    [Parameter] public EventCallback<NavLink> OnClicked { get; set; }
 
     private async void NavLinkClicked(MouseEventArgs e)
     {

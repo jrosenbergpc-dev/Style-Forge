@@ -1,6 +1,6 @@
 ﻿<table class="icx_ribbon_control">
     <tr>
-        <NavBar MenuItems="@NavMenuItems" TabSelectionChanged="@OnTabSelectionChanged" NavLinkClicked="@OnNavLinkClicked" />
+        <NavBar MenuItems="@MenuItems" TabSelectionChanged="@OnTabSelectionChanged" LinkClicked="@OnNavLinkClicked" />
     </tr>
     <tr>
         <Viewport @ref="@RibbonViewport" />
@@ -9,20 +9,20 @@
 @code {
     private Viewport? RibbonViewport;
 
-    [Parameter] public List<NavMenuItem>? NavMenuItems { get; set; }
-    [Parameter] public EventCallback<NavMenuItem> NavTabSelected { get; set; }
-    [Parameter] public EventCallback<NavLink> NavLinkClicked { get; set; }
-    [Parameter] public EventCallback<dynamic> RibbonItemClicked { get; set; }
+    [Parameter] public List<NavMenuItem>? MenuItems { get; set; }
+    [Parameter] public EventCallback<NavMenuItem> TabSelected { get; set; }
+    [Parameter] public EventCallback<NavLink> LinkClicked { get; set; }
+    [Parameter] public EventCallback<dynamic> ItemClicked { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            if (NavMenuItems != null)
+            if (MenuItems != null)
             {
-                if (NavMenuItems.Count > 1)
+                if (MenuItems.Count > 1)
                 {
-                    await UpdateViewport(NavMenuItems[1]); //load first tab section, might need to rework this....TODO
+                    await UpdateViewport(MenuItems[1]); //load first tab section, might need to rework this....TODO
                 }
             }
         }
@@ -34,7 +34,7 @@
         {
             await UpdateViewport(e);
 
-            await NavTabSelected.InvokeAsync(e);
+            await TabSelected.InvokeAsync(e);
         }
     }
 
@@ -66,11 +66,11 @@
 
     private async void OnNavLinkClicked(NavLink e)
     {
-        await NavLinkClicked.InvokeAsync(e);
+        await LinkClicked.InvokeAsync(e);
     }
 
     private async Task Viewport_ItemClicked(dynamic item)
     {
-        await RibbonItemClicked.InvokeAsync(item);
+        await ItemClicked.InvokeAsync(item);
     }
 }

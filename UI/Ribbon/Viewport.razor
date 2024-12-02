@@ -14,7 +14,7 @@
 @code {
     private RenderFragment? BodyContent { get; set; } = null;
 
-    public async Task SetContent(object EventReceiver, Type template, Dictionary<string, object>? attributes = null)
+    public async Task SetContent(object EventReceiver, Type? template, Dictionary<string, object>? attributes = null)
     {
         if (template == null || !typeof(IComponent).IsAssignableFrom(template))
         {
