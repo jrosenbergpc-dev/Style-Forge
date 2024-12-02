@@ -1,0 +1,79 @@
+﻿@if (StackItemContent != null)
+{
+    <table style="width: 100%; height: 100%;" cellpadding="1">
+        @StackItemContent
+    </table>
+}
+else
+{
+    @if (PanelStyle == StackPanelStyle.Vertical)
+    {
+        <table style="width: 100%; height: 100%;" cellpadding="1">
+            @if (StackItems != null)
+            {
+                @foreach (RibbonMenuItem item in StackItems)
+                {
+                    <tr>
+                        @if (item.Type == typeof(Button))
+                        {
+                            <Button Text="@item.Text" IconURL="@item.Icon" Clicked="@ButtonsClicked" />
+                        }
+                        else if (item.Type == typeof(Label))
+                        {
+                            <Label Text="@item.Text" FontFamily="@item.FontFamily" FontSize="@item.FontSize" FontColor="@item.FontColor" />
+                        }
+                        else if (item.Type == typeof(Divider))
+                        {
+                            <Divider />
+                        }
+                        else if (item.Type == typeof(Textbox))
+                        {
+                            <Textbox />
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    }
+    else if (PanelStyle == StackPanelStyle.Horizontal)
+    {
+        <table style="width: 100%; height: auto;" cellpadding="0">
+            @if (StackItems != null)
+            {
+                <tr>
+                    @foreach (RibbonMenuItem item in StackItems)
+                    {
+                        @if (item.Type == typeof(Button))
+                        {
+                            <Button Text="@item.Text" IconURL="@item.Icon" IsSelected="@item.IsSelected" Clicked="@ButtonsClicked" />
+                        }
+                        else if (item.Type == typeof(Label))
+                        {
+                            <Label Text="@item.Text" FontFamily="@item.FontFamily" FontSize="@item.FontSize" FontColor="@item.FontColor" />
+                        }
+                        else if (item.Type == typeof(Divider))
+                        {
+                            <Divider />
+                        }
+                        else if (item.Type == typeof(Textbox))
+                        {
+                            <Textbox />
+                        }
+                    }
+                </tr>
+            }
+        </table>
+    }
+}
+
+@code {
+    [Parameter] public StackPanelStyle PanelStyle { get; set; } = StackPanelStyle.Vertical;
+    [Parameter] public List<RibbonMenuItem>? StackItems { get; set; }
+    [Parameter] public RenderFragment? StackItemContent { get; set; }
+    [Parameter] public EventCallback<dynamic> ItemClicked { get; set; }
+
+    private async void ButtonsClicked(Button e)
+    {
+        await ItemClicked.InvokeAsync(e);
+    }
+}

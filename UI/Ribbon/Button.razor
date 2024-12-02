@@ -1,0 +1,50 @@
+﻿@if (IsSelected == true)
+{
+    <td class="icx_ribbon_button_selected" @onclick="@ButtonClicked">
+        <tr style="text-align:center;">
+            @if (!string.IsNullOrEmpty(IconURL))
+            {
+                <td style="min-width: 4vw; min-height: 4vh;">
+                    <div style="width: 32px; height: 32px; margin:auto; background: url(@IconURL) no-repeat center; background-size: 100% 100%;">
+                    </div>
+                </td>
+            }
+        </tr>
+        <tr class="icx_ribbon_button_text">
+            <td valign="top" style="height: 3.5vh;">
+                @Text
+            </td>
+        </tr>
+    </td>
+}
+else
+{
+    <td class="icx_ribbon_button" @onclick="@ButtonClicked">
+        <tr style="text-align:center;">
+            @if (!string.IsNullOrEmpty(IconURL))
+            {
+                <td style="min-width: 4vw; min-height: 4vh;">
+                    <div style="width: 32px; height: 32px; margin:auto; background: url(@IconURL) no-repeat center; background-size: 100% 100%;">
+                    </div>
+                </td>
+            }
+        </tr>
+        <tr class="icx_ribbon_button_text">
+            <td valign="top" style="height: 3.5vh;">
+                @Text
+            </td>
+        </tr>
+    </td>
+}
+
+@code {
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public string? IconURL { get; set; }
+    [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public EventCallback<Button> Clicked { get; set; }
+
+    private async void ButtonClicked()
+    {
+        await Clicked.InvokeAsync(this);
+    }
+}

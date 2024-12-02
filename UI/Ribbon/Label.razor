@@ -1,0 +1,14 @@
+﻿<td>
+    <tr style="text-align: center;">
+        <td style="padding-left: 1vw; padding-right: 1vw; font-family: @FontFamily; font-size: @FontSize; color: @FontColor;">
+            @Text
+        </td>
+    </tr>
+</td>
+
+@code {
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public string? FontFamily { get; set; }
+    [Parameter] public string? FontSize { get; set; }
+    [Parameter] public string? FontColor { get; set; }
+}

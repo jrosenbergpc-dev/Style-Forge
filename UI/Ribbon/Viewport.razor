@@ -1,0 +1,71 @@
+﻿<td style="text-align:center;">
+    <div class="icx_ribbon_viewport">
+        @if(BodyContent != null)
+        {
+            @BodyContent
+        }
+        else
+        {
+            <span>&nbsp;</span>
+        }
+    </div>
+</td>
+
+@code {
+    private RenderFragment? BodyContent { get; set; } = null;
+
+    public async Task SetContent(object EventReceiver, Type template, Dictionary<string, object>? attributes = null)
+    {
+        if (template == null || !typeof(IComponent).IsAssignableFrom(template))
+        {
+            throw new ArgumentException("Template must be a valid component type.");
+        }
+
+        RenderFragment content = builder =>
+        {
+            int sequenceCounter = 0;
+
+            builder.OpenComponent(sequenceCounter, template);
+
+            if (attributes != null)
+            {
+                foreach (var attribute in attributes)
+                {
+                    switch (attribute.Value)
+                    {
+                        case Action eventAction:
+                            // Handle Action as EventCallback
+                            builder.AddAttribute(sequenceCounter++, attribute.Key, EventCallback.Factory.Create(EventReceiver, eventAction));
+                            break;
+
+                        case EventCallback eventCallback:
+                            // Add EventCallback directly
+                            builder.AddAttribute(sequenceCounter++, attribute.Key, eventCallback);
+                            break;
+
+                        case EventCallback<string> stringCallback:
+                            builder.AddAttribute(sequenceCounter++, attribute.Key, stringCallback);
+                            break;
+
+                        case Delegate @delegate:
+                            // Wrap Delegate as EventCallback
+                            var eventCallbackDynamic = EventCallback.Factory.Create<object>(EventReceiver, args => @delegate.DynamicInvoke(args));
+                            builder.AddAttribute(sequenceCounter++, attribute.Key, eventCallbackDynamic);
+                            break;
+
+                        default:
+                            // Handle other attribute types (e.g., strings, integers)
+                            builder.AddAttribute(sequenceCounter++, attribute.Key, attribute.Value);
+                            break;
+                    }
+                }
+            }
+
+            builder.CloseComponent();
+        };
+
+        BodyContent = content;
+
+        await InvokeAsync(StateHasChanged);
+    }
+}
