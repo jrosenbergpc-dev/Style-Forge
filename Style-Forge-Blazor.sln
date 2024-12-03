@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35514.174 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Style-Forge-Blazor", "Style-Forge-Blazor.csproj", "{A3922658-26C4-4E8B-A20E-52A99BCB9387}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Style-Forge-Tester", "..\Style-Forge-Tester\Style-Forge-Tester.csproj", "{5AF59619-8CE1-4379-8E5E-16EEB138A095}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A3922658-26C4-4E8B-A20E-52A99BCB9387}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3922658-26C4-4E8B-A20E-52A99BCB9387}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3922658-26C4-4E8B-A20E-52A99BCB9387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AF59619-8CE1-4379-8E5E-16EEB138A095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF59619-8CE1-4379-8E5E-16EEB138A095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF59619-8CE1-4379-8E5E-16EEB138A095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF59619-8CE1-4379-8E5E-16EEB138A095}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

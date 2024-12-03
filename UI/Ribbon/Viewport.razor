@@ -1,5 +1,5 @@
 ﻿<td style="text-align:center;">
-    <div class="icx_ribbon_viewport">
+    <div class="sf_ribbon_viewport">
         @if(BodyContent != null)
         {
             @BodyContent
@@ -18,7 +18,7 @@
     {
         if (template == null || !typeof(IComponent).IsAssignableFrom(template))
         {
-            throw new ArgumentException("Template must be a valid component type.");
+            throw new ArgumentException("Template missing or must be a valid component type.");
         }
 
         RenderFragment content = builder =>

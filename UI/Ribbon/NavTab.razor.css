@@ -15,3 +15,12 @@
     transition: all 0.3s linear;
     cursor: default;
 }
+
+.sf_navtab:hover {
+    border-left: 1px solid #6D674C;
+    border-top: 1px solid #595957;
+    border-right: 1px solid #6D674C;
+    border-bottom: 0px;
+    border-radius: 5px 5px 0px 0px;
+    background: radial-gradient(70% 50% at center bottom, rgba(206,139,8,1), rgba(85,83,78,0.6));
+}

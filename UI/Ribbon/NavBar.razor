@@ -9,10 +9,10 @@
             }
             else if (item.Type is NavTab)
             {
-                <NavTab Text="@item.Text" IsSelected="@item.IsSelected" OnClicked="@Selected" />
+                <NavTab Text="@item.Text" IsSelected="@item.IsSelected" OnClicked="@Selected" FontFamily="@item.FontFamily" FontColor="@item.FontColor" FontSize="@item.FontSize" LineHeight="@item.LineHeight" />
             }
         }
-        <div class="icx_ribbon_tabheader" style="float: left;" />
+        <div class="sf_ribbon_tabheader" style="float: left;" />
     </td>
 }
 else
