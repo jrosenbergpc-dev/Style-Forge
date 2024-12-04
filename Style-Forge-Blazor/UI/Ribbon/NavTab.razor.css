@@ -24,3 +24,21 @@
     border-radius: 5px 5px 0px 0px;
     background: radial-gradient(70% 50% at center bottom, rgba(206,139,8,1), rgba(85,83,78,0.6));
 }
+
+.selected {
+    border-left: 1px solid #AEECF3;
+    border-top: 1px solid #E5EBEB;
+    border-right: 1px solid #AEECF3;
+    border-bottom: 0px;
+    border-radius: 5px 5px 0px 0px;
+    background: linear-gradient(180deg, rgba(215,216,219,1) 0%, rgba(189,192,202,1) 100%);
+    color: black;
+}
+
+    .selected:hover {
+        border-bottom: 0px;
+        border-top: 1px solid #D48A32;
+        border-left: 1px solid #D48A32;
+        border-right: 1px solid #D48A32;
+        background: linear-gradient(180deg, rgba(245,217,147,1) 0%, rgba(213,215,218,1) 10%, rgba(193,198,205,1) 99%, rgba(178,184,193,1) 100%);
+    }

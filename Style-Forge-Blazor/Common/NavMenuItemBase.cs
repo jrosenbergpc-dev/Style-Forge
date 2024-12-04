@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Style_Forge.Common.CSSProperties;
 
 namespace Style_Forge.Common
 {
     public abstract class NavMenuItemBase : ComponentBase
     {
+        [Parameter] public List<CSSPropertyBase> CSSProperties { get; set; } = new List<CSSPropertyBase>();
         [Parameter] public string? Name { get; set; }
         [Parameter] public string? Icon { get; set; }
         [Parameter] public string? IconWidth { get; set; }
@@ -12,7 +14,6 @@ namespace Style_Forge.Common
         [Parameter] public string? Height { get; set; }
         [Parameter] public string? FontFamily { get; set; }
         [Parameter] public string? FontSize { get; set; }
-        [Parameter] public string? FontColor { get; set; }
         [Parameter] public string? LineHeight { get; set; }
         [Parameter] public string? Text { get; set; }
         [Parameter] public EventCallback<dynamic> OnClicked { get; set; }

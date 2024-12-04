@@ -11,6 +11,8 @@
 @code {
     private Viewport? RibbonViewport;
 
+    [Parameter] public bool AutoSelectFirstTab { get; set; }
+
     [Parameter] public List<NavMenuItem>? MenuItems { get; set; }
     [Parameter] public EventCallback<NavMenuItem> TabSelected { get; set; }
     [Parameter] public EventCallback<NavLink> LinkClicked { get; set; }
@@ -20,11 +22,23 @@
     {
         if (firstRender)
         {
+            await HandleAutoSelect();
+        }
+    }
+
+    private async Task HandleAutoSelect()
+    {
+        if (AutoSelectFirstTab)
+        {
             if (MenuItems != null)
             {
-                if (MenuItems.Count > 1)
+                int firstTabIndex = -1;
+                firstTabIndex = MenuItems.IndexOf(MenuItems.Where(item => item.Type is NavTab).FirstOrDefault(), 0);
+
+                if (firstTabIndex != -1)
                 {
-                    await UpdateViewport(MenuItems[1]); //load first tab section, might need to rework this....TODO
+                    MenuItems[firstTabIndex].IsSelected = true;
+                    await UpdateViewport(MenuItems[firstTabIndex]);
                 }
             }
         }

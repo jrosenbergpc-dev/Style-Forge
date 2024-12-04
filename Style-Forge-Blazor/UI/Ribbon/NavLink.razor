@@ -1,5 +1,5 @@
 ﻿@inherits NavMenuItemBase
-<div class="icx_navlink" style="vertical-align: middle; width: @Width; height: @Height;" @onclick="@NavLinkClicked">
+<div class="sf_navlink" style="vertical-align: middle; @CSSProperties.GetCSSStyleOutput()" @onclick="@NavLinkClicked">
     @if (LinkStyle == NavLinkStyle.Text)
     {
         @Text

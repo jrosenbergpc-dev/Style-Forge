@@ -1,13 +1,14 @@
 ﻿@inherits NavMenuItemBase
+
 @if (IsSelected == true)
 {
-    <div class="sf_navtab selected" @onclick="@TabClicked" style="font-size: @FontSize !important; font-family: @FontFamily !important; color: @FontColor !important; line-height: @LineHeight !important;">
+    <div class="sf_navtab selected" @onclick="@TabClicked" style="@CSSProperties.GetCSSStyleOutput()">
         <span>@Text</span>
     </div>
 }
 else
 {
-    <div class="sf_navtab" @onclick="@TabClicked" style="font-size: @FontSize !important; font-family: @FontFamily !important; color: @FontColor !important; line-height: @LineHeight !important;">
+    <div class="sf_navtab" @onclick="@TabClicked" style="@CSSProperties.GetCSSStyleOutput()">
         <span>@Text</span>
     </div>
 }

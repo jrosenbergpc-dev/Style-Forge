@@ -1,12 +1,10 @@
 ﻿@page "/"
-
 <PageTitle>Home</PageTitle>
 
-<h1>Style-Forge Blazor Test Page</h1>
+<span style="width: 100%; text-align:center;"><h1>Style-Forge Blazor Test Page</h1></span>
 
 <h3>Ribbon Control</h3>
-
-<RibbonControl MenuItems="@NavMenuItems"></RibbonControl>
+<RibbonControl MenuItems="@NavMenuItems" AutoSelectFirstTab="true"></RibbonControl>
 
 @code {
     private List<NavMenuItem>? NavMenuItems { get; set; } = new List<NavMenuItem>();
@@ -15,8 +13,11 @@
     {
         if (firstRender)
         {
-            //NavMenuItems.Add(new NavMenuItem() { Text = "", Icon = "images/mdt_icon.png", Type = new NavLink(), LinkStyle = NavLinkStyle.Icon, Width = "34px", IconWidth = "30px", IconHeight = "30px", Height = "4.5vh" });
+            NavMenuItems.Add(new NavMenuItem() { Text = "", Icon = "icon-192.png", Type = new Style_Forge.UI.Ribbon.NavLink(), LinkStyle = NavLinkStyle.Icon, Width = "34px", IconWidth = "30px", IconHeight = "30px", Height = "4.5vh" });
             NavMenuItems.Add(new NavMenuItem() { Text = "Tab 1", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
+            NavMenuItems.Add(new NavMenuItem() { Text = "Tab 2", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
+            NavMenuItems.Add(new NavMenuItem() { Text = "Tab 3", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
+            NavMenuItems.Add(new NavMenuItem() { Text = "Tab 4", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
 
             await InvokeAsync(StateHasChanged);
         }

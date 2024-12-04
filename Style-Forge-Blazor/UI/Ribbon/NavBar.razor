@@ -5,11 +5,11 @@
         {
             @if (item.Type is NavLink)
             {
-                <NavLink Text="@item.Text" IconURL="@item.Icon" LinkStyle="@item.LinkStyle" Width="@item.Width" Height="@item.Height" IconWidth="@item.IconWidth" IconHeight="@item.IconHeight" Index="@item.Index" CustomAction="@item.CustomLinkAction" OnClicked="@Clicked" />
+                <NavLink Text="@item.Text" IconURL="@item.Icon" LinkStyle="@item.LinkStyle" CSSProperties="@item.CSSProperties" Width="@item.Width" Height="@item.Height" IconWidth="@item.IconWidth" IconHeight="@item.IconHeight" Index="@item.Index" CustomAction="@item.CustomLinkAction" OnClicked="@Clicked" />
             }
             else if (item.Type is NavTab)
             {
-                <NavTab Text="@item.Text" IsSelected="@item.IsSelected" OnClicked="@Selected" FontFamily="@item.FontFamily" FontColor="@item.FontColor" FontSize="@item.FontSize" LineHeight="@item.LineHeight" />
+                <NavTab Text="@item.Text" IsSelected="@item.IsSelected" OnClicked="@Selected" CSSProperties="@item.CSSProperties" />
             }
         }
         <div class="sf_ribbon_tabheader" style="float: left;" />
