@@ -1,7 +1,7 @@
-﻿using Style_Forge_Blazor.Common;
-using Style_Forge_Blazor.Common.Enums.Style;
+﻿using Style_Forge.Common;
+using Style_Forge.Common.Enums.Style;
 
-namespace Style_Forge_Blazor.UI.Models
+namespace Style_Forge.UI
 {
     public class NavMenuItem : NavMenuItemBase
     {

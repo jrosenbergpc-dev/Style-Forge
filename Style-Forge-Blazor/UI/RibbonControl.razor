@@ -1,4 +1,6 @@
-﻿<table class="sf_ribbon_control">
+﻿@using Style_Forge.UI.Ribbon
+
+<table class="sf_ribbon_control">
     <tr>
         <NavBar MenuItems="@MenuItems" TabSelectionChanged="@OnTabSelectionChanged" LinkClicked="@OnNavLinkClicked" />
     </tr>
@@ -45,14 +47,17 @@
             return;
         }
 
-        Dictionary<string, object>? defaultAttributes = new Dictionary<string, object>
+        if (e.Section != null)
         {
-            { "ItemClicked", new Func<dynamic, Task>(Viewport_ItemClicked)}
-        };
+            Dictionary<string, object>? defaultAttributes = new Dictionary<string, object>
+            {
+                { "ItemClicked", new Func<dynamic, Task>(Viewport_ItemClicked)}
+            };
 
-        Dictionary<string, object>? mergedAttributes = defaultAttributes.MergeWith(e.CustomAttributes);
+            Dictionary<string, object>? mergedAttributes = defaultAttributes.MergeWith(e.CustomAttributes);
 
-        await RibbonViewport.SetContent(this, e.Section, mergedAttributes);
+            await RibbonViewport.SetContent(this, e.Section, mergedAttributes);
+        }
 
         await InvokeAsync(StateHasChanged);
     }

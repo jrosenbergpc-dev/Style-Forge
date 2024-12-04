@@ -1,4 +1,4 @@
-﻿namespace Style_Forge_Blazor.UI.Models
+﻿namespace Style_Forge.UI
 {
     public class RibbonMenuItem
     {

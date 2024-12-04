@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Style_Forge_Blazor.Common
+namespace Style_Forge.Common
 {
     public abstract class NavMenuItemBase : ComponentBase
     {

@@ -16,7 +16,7 @@
         if (firstRender)
         {
             //NavMenuItems.Add(new NavMenuItem() { Text = "", Icon = "images/mdt_icon.png", Type = new NavLink(), LinkStyle = NavLinkStyle.Icon, Width = "34px", IconWidth = "30px", IconHeight = "30px", Height = "4.5vh" });
-            NavMenuItems.Add(new NavMenuItem() { Text = "Tab 1", Type = new NavTab(), LinkStyle = NavLinkStyle.Text, Section = null, FontColor = "red" });
+            NavMenuItems.Add(new NavMenuItem() { Text = "Tab 1", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
 
             await InvokeAsync(StateHasChanged);
         }

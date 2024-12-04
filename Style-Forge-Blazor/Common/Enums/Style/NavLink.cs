@@ -1,4 +1,4 @@
-﻿namespace Style_Forge_Blazor.Common.Enums.Style
+﻿namespace Style_Forge.Common.Enums.Style
 {
     public enum NavLinkStyle
     {

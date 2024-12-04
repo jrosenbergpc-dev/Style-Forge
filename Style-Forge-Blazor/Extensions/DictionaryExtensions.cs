@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Style_Forge_Blazor.Extensions
+﻿namespace Style_Forge.Extensions
 {
     public static class DictionaryExtensions
     {
