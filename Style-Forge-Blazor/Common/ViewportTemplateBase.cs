@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Style_Forge_Blazor.BaseTemplates
+namespace Style_Forge_Blazor.Common
 {
     public abstract class ViewportTemplateBase : ComponentBase
     {

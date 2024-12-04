@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Style_Forge_Blazor.BaseTemplates
+namespace Style_Forge_Blazor.Common
 {
     public abstract class NavMenuItemBase : ComponentBase
     {
@@ -12,7 +12,7 @@ namespace Style_Forge_Blazor.BaseTemplates
         [Parameter] public string? Height { get; set; }
         [Parameter] public string? FontFamily { get; set; }
         [Parameter] public string? FontSize { get; set; }
-        [Parameter] public string? FontColor {  get; set; }
+        [Parameter] public string? FontColor { get; set; }
         [Parameter] public string? LineHeight { get; set; }
         [Parameter] public string? Text { get; set; }
         [Parameter] public EventCallback<dynamic> OnClicked { get; set; }

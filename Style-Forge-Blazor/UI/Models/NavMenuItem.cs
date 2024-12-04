@@ -1,4 +1,4 @@
-﻿using Style_Forge_Blazor.BaseTemplates;
+﻿using Style_Forge_Blazor.Common;
 using Style_Forge_Blazor.Common.Enums.Style;
 
 namespace Style_Forge_Blazor.UI.Models
