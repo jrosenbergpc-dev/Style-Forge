@@ -29,7 +29,7 @@ namespace Style_Forge.Extensions
                 .Where(css => !string.IsNullOrWhiteSpace(css)); // Filter out null or empty values
 
             // Combine all CSS strings into a single comma-separated string
-            return string.Join(", ", cssStrings);
+            return string.Join(" ", cssStrings);
         }
     }
 }

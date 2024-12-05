@@ -5,7 +5,7 @@
         {
             @if (item.Type is NavLink)
             {
-                <NavLink Text="@item.Text" IconURL="@item.Icon" LinkStyle="@item.LinkStyle" CSSProperties="@item.CSSProperties" Width="@item.Width" Height="@item.Height" IconWidth="@item.IconWidth" IconHeight="@item.IconHeight" Index="@item.Index" CustomAction="@item.CustomLinkAction" OnClicked="@Clicked" />
+                <NavLink Text="@item.Text" IconURL="@item.Icon" LinkStyle="@item.LinkStyle" CSSProperties="@item.CSSProperties" IconWidth="@item.IconWidth" IconHeight="@item.IconHeight" Index="@item.Index" CustomAction="@item.CustomLinkAction" OnClicked="@Clicked" />
             }
             else if (item.Type is NavTab)
             {

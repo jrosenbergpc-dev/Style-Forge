@@ -1,0 +1,25 @@
+﻿.sf_groupbox {
+    float: left;
+    border-top: 1px outset #76797E;
+    border-left: 1px outset #5C5D60;
+    border-right: 1px outset #5C5D60;
+    border-bottom: 1px outset #424242;
+    border-radius: 4px;
+    height: 11.4vh;
+    transition: all 0.1s linear;
+    margin-right: 0.2vw;
+}
+
+    .sf_groupbox:hover {
+        background-color: rgba(255,255,255,0.4);
+    }
+
+.sf_groupbox_title {
+    background: linear-gradient(180deg, rgba(127,130,130,1) 0%, rgba(99,101,101,1) 100%);
+    color: white;
+    font-size: 1.3vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 15px;
+    height: 15px;
+    line-height: 15px;
+}

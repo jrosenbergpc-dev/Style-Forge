@@ -13,7 +13,19 @@
     {
         if (firstRender)
         {
-            NavMenuItems.Add(new NavMenuItem() { Text = "", Icon = "icon-192.png", Type = new Style_Forge.UI.Ribbon.NavLink(), LinkStyle = NavLinkStyle.Icon, Width = "34px", IconWidth = "30px", IconHeight = "30px", Height = "4.5vh" });
+            NavMenuItem rootItem = new NavMenuItem()
+                {
+                    Text = "",
+                    Icon = "icon-192.png",
+                    Type = new Style_Forge.UI.Ribbon.NavLink(),
+                    LinkStyle = NavLinkStyle.Icon,
+                    IconWidth = "30px",
+                    IconHeight = "30px"
+                };
+            rootItem.CSSProperties.Add(new CSSProperty<Width> { Value = new Width { Size = 34, SizeType = Style_Forge.Common.Enums.SizeType.Pixel } });
+            rootItem.CSSProperties.Add(new CSSProperty<Height> { Value = new Height { Size = 4.5, SizeType = Style_Forge.Common.Enums.SizeType.VariableHeight } });
+
+            NavMenuItems.Add(rootItem);
             NavMenuItems.Add(new NavMenuItem() { Text = "Tab 1", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
             NavMenuItems.Add(new NavMenuItem() { Text = "Tab 2", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
             NavMenuItems.Add(new NavMenuItem() { Text = "Tab 3", Type = new Style_Forge.UI.Ribbon.NavTab(), LinkStyle = NavLinkStyle.Text, Section = null });
