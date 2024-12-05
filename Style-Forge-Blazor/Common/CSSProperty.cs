@@ -18,9 +18,9 @@ namespace Style_Forge.Common
             {
 
             }
-            else if (typeof(T) == typeof(TextColor))
+            else if (typeof(T) == typeof(FontColor))
             {
-                var textColor = Value as TextColor;
+                var textColor = Value as FontColor;
                 if (textColor != null)
                 {
                     retValue = $"color: {textColor.Color} !important;";
