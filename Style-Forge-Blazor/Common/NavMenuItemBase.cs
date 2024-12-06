@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Style_Forge.Common.CSSProperties;
 
 namespace Style_Forge.Common
 {

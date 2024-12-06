@@ -11,22 +11,22 @@ else
         <table style="width: 100%; height: 100%;" cellpadding="1">
             @if (StackItems != null)
             {
-                @foreach (RibbonMenuItem item in StackItems)
+                @foreach (StyleForgeComponent item in StackItems)
                 {
                     <tr>
-                        @if (item.Type == typeof(Button))
+                        @if (item is Button xitem)
                         {
-                            <Button Text="@item.Text" IconURL="@item.Icon" Clicked="@ButtonsClicked" />
+                            <Button Text="@xitem.Text" IconURL="@xitem.IconURL" IsSelected="@xitem.IsSelected" OnClicked="@ButtonsClicked" />
                         }
-                        else if (item.Type == typeof(Label))
+                        else if (item is Label litem)
                         {
-                            <Label Text="@item.Text" FontFamily="@item.FontFamily" FontSize="@item.FontSize" FontColor="@item.FontColor" />
+                            <Label Text="@litem.Text" />
                         }
-                        else if (item.Type == typeof(Divider))
+                        else if (item is Divider)
                         {
                             <Divider />
                         }
-                        else if (item.Type == typeof(Textbox))
+                        else if (item is Textbox)
                         {
                             <Textbox />
                         }
@@ -41,21 +41,21 @@ else
             @if (StackItems != null)
             {
                 <tr>
-                    @foreach (RibbonMenuItem item in StackItems)
+                    @foreach (StyleForgeComponent item in StackItems)
                     {
-                        @if (item.Type == typeof(Button))
+                        @if (item is Button xitem)
                         {
-                            <Button Text="@item.Text" IconURL="@item.Icon" IsSelected="@item.IsSelected" Clicked="@ButtonsClicked" />
+                            <Button Text="@xitem.Text" IconURL="@xitem.IconURL" IsSelected="@xitem.IsSelected" OnClicked="@ButtonsClicked" />
                         }
-                        else if (item.Type == typeof(Label))
+                        else if (item is Label litem)
                         {
-                            <Label Text="@item.Text" FontFamily="@item.FontFamily" FontSize="@item.FontSize" FontColor="@item.FontColor" />
+                            <Label Text="@litem.Text" />
                         }
-                        else if (item.Type == typeof(Divider))
+                        else if (item is Divider)
                         {
                             <Divider />
                         }
-                        else if (item.Type == typeof(Textbox))
+                        else if (item is Textbox)
                         {
                             <Textbox />
                         }
@@ -68,11 +68,11 @@ else
 
 @code {
     [Parameter] public StackPanelStyle PanelStyle { get; set; } = StackPanelStyle.Vertical;
-    [Parameter] public List<RibbonMenuItem>? StackItems { get; set; }
+    [Parameter] public List<StyleForgeComponent>? StackItems { get; set; }
     [Parameter] public RenderFragment? StackItemContent { get; set; }
     [Parameter] public EventCallback<dynamic> ItemClicked { get; set; }
 
-    private async void ButtonsClicked(Button e)
+    private async void ButtonsClicked(dynamic e)
     {
         await ItemClicked.InvokeAsync(e);
     }

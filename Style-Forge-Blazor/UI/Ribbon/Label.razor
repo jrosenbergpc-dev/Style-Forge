@@ -1,6 +1,7 @@
-﻿<td>
+﻿@inherits StyleForgeComponent
+<td>
     <tr style="text-align: center;">
-        <td style="padding-left: 1vw; padding-right: 1vw; font-family: @FontFamily; font-size: @FontSize; color: @FontColor;">
+        <td style="padding-left: 1vw; padding-right: 1vw; @CSSProperties.GetCSSStyleOutput()">
             @Text
         </td>
     </tr>
@@ -8,7 +9,4 @@
 
 @code {
     [Parameter] public string? Text { get; set; }
-    [Parameter] public string? FontFamily { get; set; }
-    [Parameter] public string? FontSize { get; set; }
-    [Parameter] public string? FontColor { get; set; }
 }

@@ -1,6 +1,9 @@
-﻿@if (IsSelected == true)
+﻿@using Style_Forge.Common.CSSProperties
+@inherits StyleForgeComponent
+
+@if (IsSelected == true)
 {
-    <td class="icx_ribbon_button_selected" @onclick="@ButtonClicked">
+    <td class="icx_ribbon_button_selected" @onclick="@ButtonClicked" style="@CSSProperties.GetCSSStyleOutput(typeof(CSSProperty<Width>), typeof(CSSProperty<Height>))">
         <tr style="text-align:center;">
             @if (!string.IsNullOrEmpty(IconURL))
             {
@@ -19,7 +22,7 @@
 }
 else
 {
-    <td class="icx_ribbon_button" @onclick="@ButtonClicked">
+    <td class="icx_ribbon_button" @onclick="@ButtonClicked" style="@CSSProperties.GetCSSStyleOutput(typeof(CSSProperty<Width>), typeof(CSSProperty<Height>))">
         <tr style="text-align:center;">
             @if (!string.IsNullOrEmpty(IconURL))
             {
@@ -41,10 +44,9 @@ else
     [Parameter] public string? Text { get; set; }
     [Parameter] public string? IconURL { get; set; }
     [Parameter] public bool IsSelected { get; set; }
-    [Parameter] public EventCallback<Button> Clicked { get; set; }
 
     private async void ButtonClicked()
     {
-        await Clicked.InvokeAsync(this);
+        await OnClicked.InvokeAsync(this);
     }
 }
