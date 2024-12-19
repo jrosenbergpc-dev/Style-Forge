@@ -1,0 +1,27 @@
+﻿@inherits StyleForgeComponent
+
+@if (Selected)
+{
+    <input class="neris_checkbox" type="checkbox" name="@Name" value="@Value" checked @onchange="@selectChanged" /><label class="neris_checkbox" for="@Name">@Text</label>
+}
+else
+{
+    <input class="neris_checkbox" type="checkbox" name="@Name" value="@Value" @onchange="@selectChanged" /><label class="neris_checkbox" for="@Name">@Text</label>
+}
+
+
+@code {
+    protected override async Task OnParametersSetAsync()
+    {
+        Value = Selected.ToString().ToLower();
+    }
+
+    private async Task selectChanged(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+
+        Selected = bool.Parse(Value);
+
+        await OnSelectionChanged.InvokeAsync(this);
+    }
+}
