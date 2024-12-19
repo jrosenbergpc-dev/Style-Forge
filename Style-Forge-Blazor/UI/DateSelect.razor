@@ -1,0 +1,15 @@
+﻿@inherits InputFieldBase
+@if (!string.IsNullOrEmpty(Text))
+{
+    <label for="@Name">@Text</label><br />
+}
+<input class="neris_date_select" type="date" name="@Name" value="@Value" @onchange=@selectChanged />
+
+@code {
+    private async Task selectChanged(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+
+        await OnSelectionChanged.InvokeAsync(this);
+    }
+}

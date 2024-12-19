@@ -1,0 +1,44 @@
+﻿.neris_combobox {
+    float: left;
+    height: 2.5vh;
+    width: 103%;
+    border-radius: 5px;
+    border: 1px solid black;
+    position: relative;
+    display: inline-block;
+    margin-top: 0.5vh;
+}
+
+.neris_combobox_arrow {
+    text-align: center;
+    transform: rotate(90deg);
+    cursor: default;
+    user-select: none;
+}
+
+.neris_dropdown {
+    position: absolute;
+    width: calc(100vw - 66vw);
+    background-color: white;
+    padding-left: 0.3vw;
+    overflow-y: scroll;
+    max-height: 11vh;
+    z-index: 99;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    transition: visibility 2s;
+    margin-left: 3px;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+.neris_dropdown_item {
+    cursor: default;
+    user-select: none;
+}
+
+    .neris_dropdown_item:hover {
+        background-color: silver;
+    }

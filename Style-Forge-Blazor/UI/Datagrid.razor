@@ -1,0 +1,144 @@
+﻿@inherits InputFieldBase
+
+<div class="neris_datagrid">
+    <table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="5">
+        @if (HeaderRow != null)
+        {
+            RenderFragment renderFragment = (builder) =>
+            {
+                builder.OpenComponent(0, HeaderRow.GetType());
+                builder.AddAttribute(1, "Cells", HeaderRow.Cells);
+                builder.AddAttribute(2, "IsHeader", true);
+                builder.CloseComponent();
+            };
+
+            <tr class="neris_datagrid_header">
+                @renderFragment
+            </tr>
+        }
+        else
+        {
+            <tr class="neris_datagrid_header">
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+        }
+
+        @if (Rows != null)
+        {
+            @if (Rows.Count > 0)
+            {
+                @foreach (DataRow row in Rows)
+                {
+                    RenderFragment renderFragment = (builder) =>
+                    {
+                        builder.OpenComponent(0, row.GetType());
+                        builder.AddAttribute(1, "Cells", row.Cells);
+                        builder.AddAttribute(2, "ID", row.ID);
+                        builder.AddAttribute(3, "OnClicked", EventCallback.Factory.Create<dynamic>(this, Clicked));
+                        builder.AddAttribute(4, "OnDoubleClicked", EventCallback.Factory.Create<dynamic>(this, RowDblClicked));
+                        builder.CloseComponent();
+                    };
+
+                    @if (row.Selected)
+                    {
+                        <tr class="neris_datagrid_row_selected">
+                            @renderFragment
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="neris_datagrid_row_container">
+                            @renderFragment
+                        </tr>
+                    }
+                }
+            }
+            else
+            {
+                <tr>
+                    @if (HeaderRow != null)
+                    {
+                        @if (HeaderRow.Cells.Count > 0)
+                        {
+                            <td colspan="@HeaderRow.Cells.Count()">
+                                <span style="color: gray;">No Data Loaded</span>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <span style="color: gray;">No Data Loaded</span>
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        <td>
+                            <span style="color: gray;">No Data Loaded</span>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                @if (HeaderRow != null)
+                {
+                    @if (HeaderRow.Cells.Count > 0)
+                    {
+                        <td colspan="@HeaderRow.Cells.Count()">
+                            <span style="color: gray;">No Data Loaded</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span style="color: gray;">No Data Loaded</span>
+                        </td>
+                    }
+                }
+                else
+                {
+                    <td>
+                        <span style="color: gray;">No Data Loaded</span>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+@code {
+
+    [Parameter] public List<DataRow> Rows { get; set; } = new List<DataRow>();
+    [Parameter] public DataRow? HeaderRow { get; set; }
+
+    [Parameter] public EventCallback<DataRow> RowClicked { get; set; }
+    [Parameter] public EventCallback<DataRow> RowDoubleClicked { get; set; }
+
+    private async Task RowDblClicked(dynamic e)
+    {
+        await RowDoubleClicked.InvokeAsync(e as DataRow);
+    }
+
+    private async Task Clicked(dynamic e)
+    {
+        Rows.ForEach(row => row.Selected = false);
+
+        await InvokeAsync(StateHasChanged);
+
+        DataRow x = Rows.Where(row => row.ID == (e as DataRow).ID).FirstOrDefault();
+
+        if (x != null)
+        {
+            x.Selected = true;
+        }
+
+        await RowClicked.InvokeAsync(e as DataRow);
+
+        await InvokeAsync(StateHasChanged);
+    }
+}

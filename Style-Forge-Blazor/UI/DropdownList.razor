@@ -1,0 +1,38 @@
+﻿@inherits InputFieldBase
+
+@if (!string.IsNullOrEmpty(Text))
+{
+    <label for="@Name">@Text</label>
+    <br />
+}
+<select class="neris_dropdown_list" name="@Name" @onchange="@selectChanged">
+    <option selected disabled hidden value="-1">Choose...</option>
+
+    @if (Items != null && Items.Count > 0)
+    {
+        @foreach (string item in Items)
+        {
+            if (item == SelectedValue)
+            {
+                <option value="@item" selected>@item</option>
+            }
+            else
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    }
+</select>
+
+@code {
+    [Parameter] public List<string> Items { get; set; } = new List<string>();
+
+    private async Task selectChanged(ChangeEventArgs e)
+    {
+        SelectedValue = e.Value.ToString();
+
+        Value = e.Value.ToString();
+
+        await OnSelectionChanged.InvokeAsync(this);
+    }
+}

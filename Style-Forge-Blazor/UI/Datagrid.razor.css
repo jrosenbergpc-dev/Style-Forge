@@ -1,0 +1,37 @@
+﻿@media (max-height: 800px) {
+    .neris_datagrid {
+        max-height: 53vh;
+        overflow-y: scroll;
+        border: 1px solid black;
+    }
+}
+
+@media (min-height: 800px)
+{
+    .neris_datagrid {
+        max-height: 65vh;
+        overflow-y: scroll;
+        border: 1px solid black;
+    }
+}
+
+.neris_datagrid_header {
+    font-size: 1.4vw;
+    font-weight: 700;
+    cursor: default;
+    background-color: rgba(242,242,242,1);
+    position: sticky;
+    top: 0;
+}
+
+.neris_datagrid_row_container {
+
+}
+
+.neris_datagrid_row_container:hover {
+    background-color: #ddd;
+}
+
+.neris_datagrid_row_selected {
+    background-color: #ccc;
+}

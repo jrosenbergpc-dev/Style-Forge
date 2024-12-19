@@ -1,0 +1,36 @@
+﻿@inherits InputFieldBase
+
+@if (IsHeader)
+{
+    @foreach (string cell in Cells)
+    {
+        <td class="neris_datagrid_column">
+            @cell
+        </td>
+    }
+}
+else
+{
+    @foreach (string cell in Cells)
+    {
+        <td class="neris_datagrid_row" @ondblclick="@RowDoubleClicked" @onclick="@Row_Clicked">
+            @cell
+        </td>
+    }
+}
+
+
+@code {
+    [Parameter] public List<string> Cells { get; set; } = new List<string>();
+    [Parameter] public bool IsHeader { get; set; }
+
+    private async Task RowDoubleClicked(MouseEventArgs e)
+    {
+        await OnDoubleClicked.InvokeAsync(this);
+    }
+
+    private async Task Row_Clicked(MouseEventArgs e)
+    {
+        await OnClicked.InvokeAsync(this);
+    }
+}

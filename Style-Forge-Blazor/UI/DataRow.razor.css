@@ -1,0 +1,25 @@
+﻿.neris_datagrid_column {
+    border-bottom: 1px solid darkgray;
+    border-right: 1px solid gray;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .neris_datagrid_column:hover {
+        background-color: silver;
+        filter: drop-shadow(0 0 20px #333);
+    }
+
+.neris_datagrid_row {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 1vw;
+    cursor: default;
+    user-select: none;
+}
+
+    .neris_datagrid_row:hover {
+        background-color: #eee;
+        border-bottom: 1px solid #bbb;
+        border-right: 1px solid #bbb;
+    }

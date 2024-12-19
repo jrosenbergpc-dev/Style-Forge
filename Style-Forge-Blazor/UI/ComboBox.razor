@@ -1,0 +1,111 @@
+﻿@inherits InputFieldBase
+@if (!string.IsNullOrEmpty(Text))
+{
+    <label for="@Name">@Text</label>
+    <br />
+}
+<table style="width: 91%; height: 100%;" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <input class="neris_combobox" type="text" autocomplete="off" name="@Name" value="@Value" />
+        </td>
+        <td width="5%">
+            <div class="neris_combobox_arrow" @onclick=@ToggleDropdown>&#10095;</div>
+        </td>
+    </tr>
+</table>
+<div class="neris_dropdown" style="@DropdownShown">
+    <table style="width: 100%; height: 100%;">
+        <tr>
+            <td class="neris_dropdown_item" @onclick="@(() => DropDownItemClicked("Item 1"))">
+                Item 1
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item" @onclick="@(() => DropDownItemClicked("Item 2"))">
+                Item 2
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item" @onclick="@(() => DropDownItemClicked("Item 3"))">
+                Item 3
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 4
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 5
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 6
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 7
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 8
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 9
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 10
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 11
+            </td>
+        </tr>
+        <tr>
+            <td class="neris_dropdown_item">
+                Item 12
+            </td>
+        </tr>
+    </table>
+</div>
+
+@code {
+    private string DropdownShown = "display: none; visibility: hidden;";
+    private bool bDropdownShowing = false;
+
+
+    private async Task ToggleDropdown()
+    {
+        bDropdownShowing = !bDropdownShowing;
+
+        if (bDropdownShowing)
+        {
+            DropdownShown = "display: block; visibility: visible;";
+        }
+        else
+        {
+            DropdownShown = "display: none; visibility: hidden;";
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task DropDownItemClicked(string item)
+    {
+        Value = item;
+
+        await ToggleDropdown();
+
+        await InvokeAsync(StateHasChanged);
+    }
+}
