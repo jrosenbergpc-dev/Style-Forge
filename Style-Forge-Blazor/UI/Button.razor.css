@@ -1,0 +1,21 @@
+﻿.neris_button {
+    width: 90%;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    border: 1px solid black;
+    font-size: 1.1vw;
+    cursor: pointer;
+    border-radius: 10px;
+    user-select: none;
+}
+
+    .neris_button:hover {
+        background-color: lightgray;
+        filter: drop-shadow(0 0 10px #ccc);
+    }
+
+    .neris_button:active {
+        background-color: darkgray;
+    }

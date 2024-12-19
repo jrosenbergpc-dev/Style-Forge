@@ -16,7 +16,7 @@ else
                     <tr>
                         @if (item is Button xitem)
                         {
-                            <Button Text="@xitem.Text" IconURL="@xitem.IconURL" IsSelected="@xitem.IsSelected" OnClicked="@ButtonsClicked" />
+                            <Style_Forge.UI.Ribbon.Button Text="@xitem.Text" IconURL="@xitem.IconURL" IsSelected="@xitem.IsSelected" OnClicked="@ButtonsClicked" />
                         }
                         else if (item is Label litem)
                         {
@@ -45,7 +45,7 @@ else
                     {
                         @if (item is Button xitem)
                         {
-                            <Button Text="@xitem.Text" IconURL="@xitem.IconURL" IsSelected="@xitem.IsSelected" OnClicked="@ButtonsClicked" />
+                            <Style_Forge.UI.Ribbon.Button Text="@xitem.Text" IconURL="@xitem.IconURL" IsSelected="@xitem.IsSelected" OnClicked="@ButtonsClicked" />
                         }
                         else if (item is Label litem)
                         {

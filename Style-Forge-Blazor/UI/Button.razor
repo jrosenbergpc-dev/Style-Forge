@@ -1,0 +1,17 @@
+﻿@inherits StyleForgeComponent
+@if (Disabled)
+{
+    <button class="neris_button" disabled @onclick="@thisClicked">@Text</button>
+}
+else
+{
+    <button class="neris_button" @onclick="@thisClicked">@Text</button>
+}
+
+
+@code {
+    private async Task thisClicked()
+    {
+        await OnClicked.InvokeAsync(this);
+    }
+}
