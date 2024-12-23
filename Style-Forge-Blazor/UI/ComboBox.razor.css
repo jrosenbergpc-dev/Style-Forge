@@ -1,12 +1,12 @@
 ﻿.neris_combobox {
-    float: left;
-    height: 2.5vh;
-    width: 103%;
+    height: 3vh;
+    line-height: 1.6vw;
+    font-size: 1.6vw;
+    width: 101%;
     border-radius: 5px;
     border: 1px solid black;
     position: relative;
     display: inline-block;
-    margin-top: 0.5vh;
 }
 
 .neris_combobox_arrow {
@@ -14,11 +14,12 @@
     transform: rotate(90deg);
     cursor: default;
     user-select: none;
+    width: 1.5vw;
 }
 
 .neris_dropdown {
     position: absolute;
-    width: calc(100vw - 66vw);
+    width: 98%;
     background-color: white;
     padding-left: 0.3vw;
     overflow-y: scroll;
