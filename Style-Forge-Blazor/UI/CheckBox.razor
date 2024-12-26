@@ -1,12 +1,25 @@
-﻿@inherits StyleForgeComponent
-
+﻿@inherits InputFieldBase
 @if (Selected)
 {
-    <input class="neris_checkbox" type="checkbox" name="@Name" value="@Value" checked @onchange="@selectChanged" /><label class="neris_checkbox" for="@Name">@Text</label>
+    <div class="neris_checkbox noselect">
+        <div class="box noselect" style="float: left;" @onclick="@checkbox_clicked">
+            <div class="dot noselect">
+            </div>
+        </div>
+        <div style="float: left; text-align: left; padding-left: 0.2vw; line-height: 1.1vw; font-size: 0.8vw;">
+            @Text
+        </div>
+    </div>
 }
 else
 {
-    <input class="neris_checkbox" type="checkbox" name="@Name" value="@Value" @onchange="@selectChanged" /><label class="neris_checkbox" for="@Name">@Text</label>
+    <div class="neris_checkbox noselect">
+        <div class="box noselect" style="float: left;" @onclick="@checkbox_clicked">
+        </div>
+        <div style="float: left; text-align: left; padding-left: 0.2vw; line-height: 1.1vw; font-size: 0.8vw;">
+            @Text
+        </div>
+    </div>
 }
 
 
@@ -23,5 +36,14 @@ else
         Selected = bool.Parse(Value);
 
         await OnSelectionChanged.InvokeAsync(this);
+    }
+
+    private async Task checkbox_clicked(MouseEventArgs e)
+    {
+        Selected = !Selected;
+
+        await OnSelectionChanged.InvokeAsync(this);
+
+        await InvokeAsync(StateHasChanged);
     }
 }
