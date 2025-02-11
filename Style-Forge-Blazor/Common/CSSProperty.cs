@@ -9,6 +9,8 @@ namespace Style_Forge.Common
 
     public class CSSProperty<T> : CSSPropertyBase where T : CSSPropertyBase, new()
     {
+        private const string ImportantFlag = "!important;";
+
         public T Value { get; set; } = new T();
 
         public string CSSValue()
@@ -17,80 +19,95 @@ namespace Style_Forge.Common
 
             if (typeof(T) == typeof(Background))
             {
-
+                if (Value != null)
+                {
+                    retValue = $"";
+                }
             }
             else if (typeof(T) == typeof(Border))
             {
-                var tempValue = Value as Border;
-
-                if (tempValue != null)
+                if (Value != null)
                 {
-                    if (tempValue.Radius > 0)
+                    retValue = $"{GetPropertyTypeValue(typeof(T))}{(Value as Border).Thickness}{GetSizeTypeValue((Value as Border).ThicknessType)} {(Value as Border).Style.ToString().ToLower()} {(Value as Border).Color} {ImportantFlag}";
+
+                    if ((Value as Border).Radius > 0)
                     {
-                        retValue = $"border: {tempValue.Thickness}{GetSizeTypeValue(tempValue.ThicknessType)} {tempValue.Style.ToString().ToLower()} {tempValue.Color} !important; border-radius: {tempValue.Radius}{GetSizeTypeValue(tempValue.RadiusType)} !important;";
-                    }
-                    else
-                    {
-                        retValue = $"border: {tempValue.Thickness}{GetSizeTypeValue(tempValue.ThicknessType)} {tempValue.Style.ToString().ToLower()} {tempValue.Color} !important;";
+                        retValue = retValue + $"border-radius: {(Value as Border).Radius}{GetSizeTypeValue((Value as Border).RadiusType)} {ImportantFlag}";
                     }
                 }
             }
             else if (typeof(T) == typeof(FontColor))
             {
-                var tempValue = Value as FontColor;
-
-                if (tempValue != null)
+                if (Value != null)
                 {
-                    retValue = $"color: {tempValue.Color} !important;";
+                    retValue = $"{GetPropertyTypeValue(typeof(T))}{(Value as FontColor).Color ?? String.Empty} {ImportantFlag}";
                 }
             }
             else if (typeof(T) == typeof(FontFamily))
             {
-                var tempValue = Value as FontFamily;
-
-                if (tempValue != null)
+                if (Value != null)
                 {
-                    retValue = $"font-family: {tempValue.Family} !important;";
+                    retValue = $"{GetPropertyTypeValue(typeof(T))}{(Value as FontFamily).Family} {ImportantFlag}";
                 }
             }
             else if (typeof(T) == typeof(FontSize))
             {
-                var tempValue = Value as FontSize;
-
-                if (tempValue != null)
+                if (Value != null)
                 {
-                    retValue = $"font-size: {tempValue.Size}{GetSizeTypeValue(tempValue.SizeType)} !important;";
+                    retValue = $"{GetPropertyTypeValue(typeof(T))}{(Value as FontSize).Size}{GetSizeTypeValue((Value as FontSize).SizeType)} {ImportantFlag}";
                 }
             }
             else if (typeof(T) == typeof(Height))
             {
-                var tempValue = Value as Height;
-
-                if (tempValue != null)
+                if (Value != null)
                 {
-                    retValue = $"height: {tempValue.Size}{GetSizeTypeValue(tempValue.SizeType)} !important;";
+                    retValue = $"{GetPropertyTypeValue(typeof(T))}{(Value as Height).Size}{GetSizeTypeValue((Value as Height).SizeType)} {ImportantFlag}";
                 }
             }
             else if (typeof(T) == typeof(LineHeight))
             {
-                var tempValue = Value as LineHeight;
-
-                if (tempValue != null)
+                if (Value != null)
                 {
-                    retValue = $"line-height: {tempValue.Height}{GetSizeTypeValue(tempValue.SizeType)} !important;";
+                    retValue = $"{GetPropertyTypeValue(typeof(T))}{(Value as LineHeight).Height}{GetSizeTypeValue((Value as LineHeight).SizeType)} {ImportantFlag}";
                 }
             }
             else if (typeof(T) == typeof(Width))
             {
-                var tempValue = Value as Width;
-
-                if (tempValue != null)
+                if (Value != null)
                 {
-                    retValue = $"width: {tempValue.Size}{GetSizeTypeValue(tempValue.SizeType)} !important;";
+                    retValue = $"{GetPropertyTypeValue(typeof(T))}{(Value as Width).Size}{GetSizeTypeValue((Value as Width).SizeType)} {ImportantFlag}";
                 }
             }
 
             return retValue;
+        }
+
+        private string GetPropertyTypeValue(Type type)
+        {
+            string retValue = string.Empty;
+
+            if (type == typeof(FontColor))
+            {
+                retValue = "color";
+            }
+            else if (type == typeof(FontFamily))
+            {
+                retValue = "font-family";
+            }
+            else if (type == typeof(FontSize))
+            {
+                retValue = "font-size";
+            }
+            else if (type == typeof(LineHeight))
+            {
+                retValue = "line-height";
+            }
+            else
+            {
+                retValue = type.Name.ToLower();
+            }
+
+            return retValue + ": ";
         }
 
         private string GetSizeTypeValue(SizeType size)

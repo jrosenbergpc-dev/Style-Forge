@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+option csharp_namespace = "GrpcClient";
+package styleforgegrpc;
+service StyleForgeApi {
+	rpc DoTransaction(BaseMessage) returns (BaseMessage);
+	rpc SubscribeForUpdates(stream BaseMessage) returns (stream BaseMessage);
+	rpc CloseGrpc(BaseMessage) returns (Empty);
+}
+
+message Empty {
+
+}
+
+message BaseMessage {
+    
+}

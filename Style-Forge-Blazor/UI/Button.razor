@@ -1,11 +1,12 @@
 ﻿@inherits StyleForgeComponent
+
 @if (Disabled)
 {
-    <button class="neris_button" disabled @onclick="@thisClicked">@Text</button>
+    <button class="neris_button" disabled style="@CSSProperties.GetCSSStyleOutput()" @onclick="@thisClicked">@Text</button>
 }
 else
 {
-    <button class="neris_button" @onclick="@thisClicked">@Text</button>
+    <button class="neris_button" style="@CSSProperties.GetCSSStyleOutput()" @onclick="@thisClicked">@Text</button>
 }
 
 
